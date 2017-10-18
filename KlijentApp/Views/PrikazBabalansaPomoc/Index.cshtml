@@ -1,0 +1,86 @@
+﻿@model KlijentApp.Models.PrikazBalansaPomoc 
+
+@{
+    ViewBag.Title = PrevodSrb.Pregled;
+}
+
+
+
+
+@using (Html.BeginForm("Index", "PrikazNaplate", FormMethod.Get))
+{
+    <div>Pregled salda za kompanije koje imaju definisanu transakciju tipa "Produkcija", kao i sa definisanom  "Ratom"</div>
+    <div div class="koki">
+        <ul class="jova">             
+                        <li> @Html.DropDownList("selektovanaFirma", new SelectList(ViewBag.Opisi), PrevodSrb.Filter_Opis)</li>
+            <li> @Html.DropDownList("saldo", new SelectList(ViewBag.Saldo), PrevodSrb.Saldo)</li>
+            <li> @Html.DropDownList("saldoDatum", new SelectList(ViewBag.SaldoDatum), PrevodSrb.SaldoDatum )</li>
+        </ul>
+
+
+    </div>
+    <div class="koki">
+        <ul class="jova">
+            <li> <input type="submit" value=@PrevodSrb.Primeni_filter id="spusti" /> </li>         
+
+            <li>
+                <p class="plus">
+                    @Html.ActionLink(PrevodSrb.PosaljiOpomenu, "Edit")
+                </p>
+            </li>
+        </ul>
+
+
+    </div>
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.Display(" ")
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Opis_firme, "Index", new { sortOrder = ViewBag.SortingName })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Saldo, "Index", new { sortOrder = ViewBag.SortingSaldo })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.SaldoDatum, "Index", new { sortOrder = ViewBag.SortingSaldoDatum })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Rata, "Index", new { sortOrder = ViewBag.Rata })
+        </th>
+        <th></th>
+    </tr>
+    @{ var rowColor = "D9E6C4"; }
+    @foreach (var item in Model)
+    {
+        
+            rowColor = Prenosna.HexConverter(item.Kolor);
+        
+        <tr style="color:@rowColor;"> 
+
+            <td>
+                @Html.EditorFor(modelItem => item.Check)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaldoDatum )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rata )
+            </td>
+
+           
+        </tr>
+    }
+
+</table>
+

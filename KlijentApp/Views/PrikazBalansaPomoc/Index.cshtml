@@ -1,0 +1,66 @@
+﻿@model KlijentApp.Models.PrikazBalansaPomoc
+
+@{
+    ViewBag.Title = PrevodSrb.Pregled;
+}
+
+@using (Html.BeginForm("SubmitSelected", "PrikazBalansaPomoc", FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Display(" ")
+            </th>
+            <th>
+                @Html.ActionLink(PrevodSrb.Opis_firme, "Index", new { sortOrder = ViewBag.SortingName })
+            </th>
+            <th>
+                @Html.ActionLink(PrevodSrb.Saldo, "Index", new { sortOrder = ViewBag.SortingSaldo })
+            </th>
+            <th>
+                @Html.ActionLink(PrevodSrb.SaldoDatum, "Index", new { sortOrder = ViewBag.SortingSaldoDatum })
+            </th>
+            <th>
+                @Html.ActionLink(PrevodSrb.Rata, "Index", new { sortOrder = ViewBag.Rata })
+            </th>
+            <th></th>
+        </tr>
+        @{ var rowColor = "D9E6C4"; }
+        @foreach (var item in Model.ListaNaplate)
+        {
+
+            rowColor = Prenosna.HexConverter(item.Kolor);
+
+            <tr style="color:@rowColor;">
+
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.Selected )
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Saldo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaldoDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rata)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+    <input type="submit" name="operation" id="submit" value="Submit Selected" />
+            }
+  
+}
+   
+
+
+
+

@@ -1,0 +1,143 @@
+﻿@model KlijentApp.Models.Company
+
+@{
+    ViewBag.Title = PrevodSrb.Brisanje ;
+}
+
+<h2>@PrevodSrb.Brisanje</h2>
+
+<h3>@PrevodSrb.Da_li_ste_sigurni_da_želite_da_ovo_obrišete_</h3>
+<div>
+    <h4>@PrevodSrb.Firma </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfDocTypesOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfDocTypesOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XmlOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XmlOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PdfOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PdfOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfDocTypesIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfDocTypesIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XmlIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XmlIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PdfIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PdfIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherFormatIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherFormatIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherFormatOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherFormatOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeededConversion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NeededConversion)
+        </dd>
+       
+      
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.Mod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mod)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.RefNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RefNumber)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color udji">
+            <input type="submit" value=@PrevodSrb.Obriši class="btn btn-default primeniS" /> 
+            <div class="nnl">@Html.ActionLink(PrevodSrb.Nazad_na_listu, "Index")</div>
+        </div>
+    }
+</div>

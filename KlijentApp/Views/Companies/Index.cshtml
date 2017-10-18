@@ -1,0 +1,173 @@
+﻿@model IEnumerable<KlijentApp.Models.Company>
+
+@{
+    ViewBag.Title =PrevodSrb.Pregled;
+}
+
+
+
+
+@using (Html.BeginForm("Index", "Companies", FormMethod.Get))
+{   
+ 
+    <div div class="koki">
+
+        <ul class="jova">
+                <li> @Html.DropDownList("selektovanaFirma", new SelectList(ViewBag.Opisi), PrevodSrb.Filter_opisa)</li>
+
+            <li> @Html.DropDownList("xml", new SelectList(ViewBag.XmloviIn, "Value", "Text"), PrevodSrb.Filter_xml)</li>
+                <li> @Html.DropDownList("iili", new SelectList(ViewBag.IIliIn), PrevodSrb.i_ili)</li>
+                <li> @Html.DropDownList("pdf", new SelectList(ViewBag.PdfoviIn, "Value", "Text"), PrevodSrb.Filter_pdf)</li>
+        
+            
+            <li> @Html.DropDownList("xml", new SelectList(ViewBag.XmloviOut, "Value", "Text"), PrevodSrb.Filter_xml)</li>
+            <li> @Html.DropDownList("iili", new SelectList(ViewBag.IIliOut), PrevodSrb.i_ili)</li>
+            <li> @Html.DropDownList("pdf", new SelectList(ViewBag.PdfoviOut, "Value", "Text"), PrevodSrb.Filter_pdf)</li>
+            
+
+            <li> @Html.DropDownList("aktivni", new SelectList(ViewBag.Aktivni, "Value", "Text"), PrevodSrb.Filter_aktivnih)</li>
+           
+        </ul>
+
+
+    </div>
+    <div class="koki">
+        <ul class="jova">
+            <li> <input type="submit" value=@PrevodSrb.Primeni_filter id="spusti" /> </li>
+
+            <li> <p class="plus">
+    @Html.ActionLink(PrevodSrb.Kreiraj_novi, "Create")
+</p> 
+            </li>
+          
+        </ul>
+       
+       
+    </div>
+  
+}
+<table class="table">
+    <tr>
+       
+        
+        <th>
+            @Html.ActionLink(PrevodSrb.Opis_firme, "Index", new {sortOrder = ViewBag.SortingName })
+        </th>
+        
+    
+        
+        <th>
+            @Html.ActionLink(PrevodSrb.B_T_D____Izlaz, "Index", new { sortOrder = ViewBag.SortingNumberOfDocTypesOut })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Xml___Izlaz, "Index", new { sortOrder = ViewBag.SortingXmlOut })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Pdf___Izlaz, "Index", new { sortOrder = ViewBag.SortingPdfOut })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.B_T_D____Ulaz, "Index", new { sortOrder = ViewBag.SortingNumberOfDocTypesIn })
+        </th>
+   
+
+        <th>
+            @Html.ActionLink(PrevodSrb.Xml___Ulaz, "Index", new { sortOrder = ViewBag.SortingXmlIn })
+        </th>
+       
+
+        <th>
+            @Html.ActionLink(PrevodSrb.Pdf___Ulaz, "Index", new { sortOrder = ViewBag.SortingPdfIn })
+        </th>
+
+        <th>
+            @Html.ActionLink(PrevodSrb.Drugi_formati___Ulaz, "Index", new { sortOrder = ViewBag.SortingOtherFormatIn })
+        </th>
+
+        <th>
+            @Html.ActionLink(PrevodSrb.Drugi_formati___Izlaz, "Index", new { sortOrder = ViewBag.SortingOtherFormatOut })
+        </th>
+
+        <th>
+            @Html.ActionLink(PrevodSrb.Potrebna_konverzija, "Index", new { sortOrder = ViewBag.SortingNeededConversion })
+        </th>
+
+      
+        <th>
+            @Html.ActionLink(PrevodSrb.Model, "Index", new { sortOrder = ViewBag.Mod })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Poziv_na_broj, "Index", new { sortOrder = ViewBag.PozivNaBroj })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Komentar , "Index", new { sortOrder = ViewBag.SortingComment })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Ažurirano, "Index", new {sortOrder = ViewBag.SortingUpdatedOn })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Aktivan , "Index", new { sortOrder = ViewBag.SortingActive })
+        </th>
+     
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyDescription)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfDocTypesOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.XmlOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PdfOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfDocTypesIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.XmlIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PdfIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherFormatIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherFormatOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NeededConversion)
+        </td>  
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.Mod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink(PrevodSrb.Izmeni, "Edit", new { id=item.CompanyId }) 
+            @Html.ActionLink(PrevodSrb.Detalji , "Details", new { id=item.CompanyId }) 
+            @Html.ActionLink(PrevodSrb.Obriši, "Delete", new { id=item.CompanyId })
+        </td>
+    </tr>
+}
+
+</table>
+
+                 

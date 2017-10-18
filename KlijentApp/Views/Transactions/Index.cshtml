@@ -1,0 +1,129 @@
+﻿@using KlijentApp.Models
+@model IEnumerable<Transaction>
+
+@{
+    ViewBag.Title = PrevodSrb.Pregled;
+}
+
+
+@Html.Raw(TempData["msg"])
+
+@using (Html.BeginForm("Index", "Transactions", FormMethod.Get))
+{
+    <div class="koki">
+        
+        <ul class="jova">
+            <li> @Html.DropDownList("selektovanaFirma", new SelectList(ViewBag.Opisi), PrevodSrb.Filter_opisa)</li>
+            <li> @Html.DropDownList("selektovanTip", new SelectList(ViewBag.Tipovi), PrevodSrb.Filter_tipa)</li>
+            <li> @Html.DropDownList("In", new SelectList(ViewBag.Inovi, "Value", "Text"), PrevodSrb.Filter_ulaz)</li>
+            <li> @Html.DropDownList("iili", new SelectList(ViewBag.IIli), PrevodSrb.i_ili)</li>
+            <li> @Html.DropDownList("Out", new SelectList(ViewBag.Outovi, "Value", "Text"), PrevodSrb.Filter_izlaz)</li>
+            <li> @Html.DropDownList("datum1", new SelectList(ViewBag.Datumi), PrevodSrb.Početni_datum)</li>
+            <li> @Html.DropDownList("datum2", new SelectList(ViewBag.Datumi2), PrevodSrb.Krajnji_datum)</li>
+            <li> @Html.DropDownList("aktivni", new SelectList(ViewBag.Aktivni, "Value", "Text"), PrevodSrb.Filter_aktivnih)</li> 
+           
+            
+           
+        </ul>
+        <br/><br /><br />
+        
+        </div>
+        <div class="koki">
+            <ul class="jova">
+                <li> <input type="submit" value=@PrevodSrb.Primeni_filter id="spusti" /></li>
+
+                <li>
+                    <p class="plus">
+                        @Html.ActionLink(PrevodSrb.Kreiraj_novi, "Create")
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+        
+       
+  
+  
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(PrevodSrb.Nadimak_korisnika, "Index", new {sortOrder = ViewBag.SortingNick })
+          </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Opis_firme, "Index", new {sortOrder = ViewBag.SortingName })
+          </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Tip_transakcije, "Index", new { sortOrder = ViewBag.SortingType })
+           </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Datum_transakcije, "Index", new { sortOrder = ViewBag.SortingDate })
+         </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Ulaz, "Index", new { sortOrder = ViewBag.SortingIn })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Izlaz, "Index", new { sortOrder = ViewBag.SortingOut })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Iznos, "Index", new { sortOrder = ViewBag.Amount })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Kontakt, "Index", new { sortOrder = ViewBag.Contact })
+        </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Komentar, "Index", new { sortOrder = ViewBag.SortingComment })
+           </th>
+        <th>
+            @Html.ActionLink(PrevodSrb.Aktivan, "Index", new { sortOrder = ViewBag.SortingActive })
+          </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model ) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SystemUser.Nick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company.CompanyDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionDate)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.In)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Out)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink(PrevodSrb.Izmeni, "Edit", new { id=item.TransactionId }) |
+            @Html.ActionLink(PrevodSrb.Detalji, "Details", new { id=item.TransactionId }) |
+            @Html.ActionLink(PrevodSrb.Brisanje, "Delete", new { id=item.TransactionId })
+        </td>
+    </tr>
+}
+
+</table>
+
+                   

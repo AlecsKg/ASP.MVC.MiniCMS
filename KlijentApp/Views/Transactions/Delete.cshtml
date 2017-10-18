@@ -1,0 +1,113 @@
+﻿@model Transaction
+
+@{
+    ViewBag.Title = PrevodSrb.Brisanje;
+}
+
+<h2>@PrevodSrb.Brisanje</h2>
+
+<h3> @PrevodSrb.Da_li_ste_sigurni_da_želite_da_ovo_obrišete_</h3>
+<div>
+    <h4>@PrevodSrb.Transakcija </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.CompanyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.CompanyDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.NumberOfDocTypes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfDocTypes)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.In)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.In)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Out)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Out)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color udji">
+            <input type="submit" value=@PrevodSrb.Obriši  class="btn btn-default primeniS" /> 
+            <div class="nnl">@Html.ActionLink(PrevodSrb.Nazad_na_listu, "Index")</div>
+
+        </div>
+    }
+</div>
